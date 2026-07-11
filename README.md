@@ -96,7 +96,7 @@ Starts only `arcane-manager`.
 
 ### `cf-arcane` profile
 
-Starts `arcane-route-manager` built from [codebase/cloud-tier/cloudflare-route/src/Dockerfile](codebase/cloud-tier/cloudflare-route/src/Dockerfile).
+Starts `arcane-route-manager` built from [codebase/cloud-tier/cloudflare-route/Dockerfile](codebase/cloud-tier/cloudflare-route/Dockerfile).
 
 Key lifecycle behavior from [codebase/cloud-tier/cloudflare-route/src/entrypoint.sh](codebase/cloud-tier/cloudflare-route/src/entrypoint.sh):
 
@@ -145,7 +145,7 @@ docker compose logs --tail=200 arcane-route-manager
 ## Project Layout
 
 - [compose.yaml](compose.yaml): main stack definition
-- [codebase/cloud-tier/cloudflare-route/src/Dockerfile](codebase/cloud-tier/cloudflare-route/src/Dockerfile): route manager image definition
+- [codebase/cloud-tier/cloudflare-route/Dockerfile](codebase/cloud-tier/cloudflare-route/Dockerfile): route manager image definition
 - [codebase/cloud-tier/cloudflare-route/src/entrypoint.sh](codebase/cloud-tier/cloudflare-route/src/entrypoint.sh): startup/shutdown orchestration for route actions
 - [codebase/cloud-tier/cloudflare-route/src/tunnel_route.sh](codebase/cloud-tier/cloudflare-route/src/tunnel_route.sh): Cloudflare DNS API logic
 - [storage/arcane](storage/arcane): runtime data, backups, and build artifacts

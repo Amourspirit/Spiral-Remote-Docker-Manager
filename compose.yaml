@@ -17,10 +17,10 @@ services:
       TZ: "${SERVER_TZ:-None}"
       ANALYTICS_DISABLED: "false"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./storage/arcane/data:/app/data
-      - ./storage/arcane/builds:/builds
-      - ./storage/arcane/backups:/backups
+      - ${DOCKER_SOCKS_PATH:?Set DOCKER_SOCKS_PATH in .env}:/var/run/docker.sock:ro
+      - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/data:/app/data
+      - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/builds:/builds
+      - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/backups:/backups
     healthcheck:
       test: ['CMD', '/app/arcane', 'health']
       interval: 30s

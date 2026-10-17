@@ -26,36 +26,15 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+    labels:
+      cfroute.enabled: "${ARCANE_CF_ROUTE_ENABLED:?Set ARCANE_CF_ROUTE_ENABLED in .env}"
+      cfroute.names: ${ARCANE_CF_ROUTE_NAMES:?Set ARCANE_CF_ROUTE_NAMES in .env}
+      cfroute.proxied: "${ARCANE_CF_ROUTE_PROXIED:?Set ARCANE_CF_ROUTE_PROXIED in .env}"
+      cfroute.delete_on_stop: "${ARCANE_CF_ROUTE_DELETE_ON_STOP:?Set ARCANE_CF_ROUTE_DELETE_ON_STOP in .env}"
+      cfroute.zone_id: ${CF_ZONE_ID:?Set CF_ZONE_ID in .env}
+      cfroute.tunnel_cname: ${CF_TUNNEL_CNAME:?Set CF_TUNNEL_CNAME in .env}
     networks:
     - arcane-net
-
-
-  arcane-route-manager:
-    build:
-      context: ./codebase/cloud-tier/cloudflare-route
-    container_name: arcane-route-manager
-    profiles: [ cf-arcane ]
-    restart: always
-    environment:
-      API_TOKEN: ${CF_API_TOKEN:?Set CF_API_TOKEN in .env}
-      RECORD_NAMES: ${CF_RECORD_NAMES:?Set CF_RECORD_NAMES in .env}
-      ROUTE_DISABLE_ON_STOP: ${CF_ROUTE_DISABLE_ON_STOP:-1}
-      ROUTE_ENABLE_ON_START: ${CF_ROUTE_ENABLE_ON_START:-1}
-      TUNNEL_CNAME: ${CF_TUNNEL_CNAME:?Set CF_TUNNEL_CNAME in .env}
-      ZONE_ID: ${CF_ZONE_ID:?Set CF_ZONE_ID in .env}
-      CF_ALLOW_DELETE_MISMATCH: ${CF_ALLOW_DELETE_MISMATCH:-false}
-      CF_CONNECT_TIMEOUT: ${CF_CONNECT_TIMEOUT:?Set CF_CONNECT_TIMEOUT in .env}
-      CF_MAX_TIME: ${CF_MAX_TIME:-10}
-      CF_RETRY_COUNT: ${CF_RETRY_COUNT:-3}
-      CF_TUNNEL_ID: ${CF_TUNNEL_ID:?Set CF_TUNNEL_ID in .env}
-      CF_TUNNEL_TOKEN: ${CF_TUNNEL_TOKEN:?Set CF_TUNNEL_TOKEN in .env}
-    stop_signal: SIGTERM
-    stop_grace_period: 30s
-    depends_on:
-      arcane-manager:
-        condition: service_healthy
-    networks:
-      - arcane-net
 
 networks:
   arcane-net:

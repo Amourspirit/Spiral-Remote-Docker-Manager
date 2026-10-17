@@ -13,7 +13,6 @@ services:
       PUID: "${ARCANE_PUID:?Set ARCANE_PUID in .env}"
       PGID: "${ARCANE_PGID:?Set ARCANE_PGID in .env}"
       ENCRYPTION_KEY: "${ARCANE_ENCRYPTION_KEY:?Set ARCANE_ENCRYPTION_KEY in .env}"
-      JWT_SECRET: "${ARCANE_JWT_SECRET:?Set ARCANE_JWT_SECRET in .env}"
       TZ: "${SERVER_TZ:-None}"
       ANALYTICS_DISABLED: "false"
     volumes:

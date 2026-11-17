@@ -9,12 +9,12 @@ services:
     ports:
       - '${ARCANE_EXTERNAL_PORT:?Set ARCANE_EXTERNAL_PORT in .env}:3552'
     environment:
-      APP_URL: "https://arcane.originfield.now/"
+      ARCANE_APP_URL: "https://arcane.originfield.now/"
       PUID: "${ARCANE_PUID:?Set ARCANE_PUID in .env}"
       PGID: "${ARCANE_PGID:?Set ARCANE_PGID in .env}"
-      ENCRYPTION_KEY: "${ARCANE_ENCRYPTION_KEY:?Set ARCANE_ENCRYPTION_KEY in .env}"
+      ARCANE_ENCRYPTION_KEY: "${ARCANE_ENCRYPTION_KEY:?Set ARCANE_ENCRYPTION_KEY in .env}"
       TZ: "${SERVER_TZ:-None}"
-      ANALYTICS_DISABLED: "false"
+      ARCANE_ANALYTICS_ENABLED: "false"
     volumes:
       - ${DOCKER_SOCKS_PATH:?Set DOCKER_SOCKS_PATH in .env}:/var/run/docker.sock:ro
       - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/data:/app/data

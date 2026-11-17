@@ -32,6 +32,10 @@ services:
       cfroute.delete_on_stop: "${ARCANE_CF_ROUTE_DELETE_ON_STOP:?Set ARCANE_CF_ROUTE_DELETE_ON_STOP in .env}"
       cfroute.zone_id: ${CF_ZONE_ID:?Set CF_ZONE_ID in .env}
       cfroute.tunnel_cname: ${CF_TUNNEL_CNAME:?Set CF_TUNNEL_CNAME in .env}
+      tsdproxy.enable: "true"
+      tsdproxy.name: "arcane"
+      tsdproxy.tags: "arcane,docker"
+      tsdproxy.ephemeral: "false"
     networks:
     - arcane-net
 

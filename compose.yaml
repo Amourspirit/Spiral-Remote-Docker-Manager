@@ -5,11 +5,11 @@ services:
     image: ghcr.io/getarcaneapp/manager:latest
     restart: always
     container_name: arcane-manager
-    profiles: [ arcane ]
+    profiles: [arcane]
     ports:
-      - '${ARCANE_EXTERNAL_PORT:?Set ARCANE_EXTERNAL_PORT in .env}:3552'
+      - "${ARCANE_EXTERNAL_PORT:?Set ARCANE_EXTERNAL_PORT in .env}:3552"
     environment:
-      ARCANE_APP_URL: "https://arcane.originfield.now/"
+      ARCANE_APP_URL: "${ARCANE_APP_URL_PUBLIC:?set ARCANE_APP_URL_PUBLIC in .env}"
       PUID: "${ARCANE_PUID:?Set ARCANE_PUID in .env}"
       PGID: "${ARCANE_PGID:?Set ARCANE_PGID in .env}"
       ARCANE_ENCRYPTION_KEY: "${ARCANE_ENCRYPTION_KEY:?Set ARCANE_ENCRYPTION_KEY in .env}"
@@ -21,7 +21,7 @@ services:
       - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/builds:/builds
       - ${ARCANE_STORAGE_PATH:?Set ARCANE_STORAGE_PATH in .env}/backups:/backups
     healthcheck:
-      test: ['CMD', '/app/arcane', 'health']
+      test: ["CMD", "/app/arcane", "health"]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -37,7 +37,7 @@ services:
       tsdproxy.tags: "arcane,docker"
       tsdproxy.ephemeral: "false"
     networks:
-    - arcane-net
+      - arcane-net
 
 networks:
   arcane-net:
